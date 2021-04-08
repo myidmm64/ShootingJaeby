@@ -8,12 +8,16 @@ public class Enemymove : MonoBehaviour
     private int hp = 2;
     [SerializeField]
     private float speed = 3f;
+    [SerializeField]
+    private long score = 10000;
+
+    private GameManager gameManager = null;
 
     private bool isDamaged = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = FindObjectOfType<GameManager>(); 
     }
 
     // Update is called once per frame
@@ -29,11 +33,13 @@ public class Enemymove : MonoBehaviour
             Destroy(collision.gameObject);
             if (hp > 1)
             {
-                if (isDamaged) return;
+                if (isDamaged) return;   //이 조건을 하면 리턴해서 밑에거 실행 안함 (break랑 비슷)
                 isDamaged = true;
                 StartCoroutine(Damaged());
                 return;
             }
+
+            gameManager.AddScore(score); 
             Destroy(gameObject);
 
         }
