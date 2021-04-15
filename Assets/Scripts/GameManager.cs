@@ -14,9 +14,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int life = 3;
 
+    public Vector2 MinPosition { get; private set;}
+    public Vector2 MaxPosition { get; private set;}
+
     private long score = 0;
     void Start()
     {
+        MinPosition = new Vector2(-7f, -12f);
+        MaxPosition = new Vector2(7f, 12f);
         StartCoroutine(SpawnCroissant());
     }
 

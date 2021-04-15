@@ -24,6 +24,11 @@ public class Enemymove : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.down * speed * Time.deltaTime);
+        if (transform.localPosition.y < gameManager.MinPosition.y)
+        {
+            gameManager.Dead();
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)   //영역 안에 들어왔을 때 실행

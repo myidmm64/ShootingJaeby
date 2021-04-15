@@ -347,7 +347,7 @@ MonoBehaviour:
   textScore: {fileID: 1556327461}
   textLife: {fileID: 1830811239}
   enemyCroissantPrefab: {fileID: 8559540226282812842, guid: 5975a4d42365d2b43a22f985cdad58c2, type: 3}
-  life: 3
+  life: 7
 --- !u!1 &725715841
 GameObject:
   m_ObjectHideFlags: 0
