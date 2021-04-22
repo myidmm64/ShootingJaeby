@@ -7,7 +7,7 @@ public class Enemymove : MonoBehaviour
     [SerializeField]
     private int hp = 2;
     [SerializeField]
-    private float speed = 3f;
+    private float speed = 20f;
     [SerializeField]
     private long score = 10000;
 

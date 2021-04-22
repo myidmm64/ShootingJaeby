@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bulletmove : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 10f;
+    private float speed = 20f;
 
     private GameManager gamemanager = null;
     // Start is called before the first frame update
