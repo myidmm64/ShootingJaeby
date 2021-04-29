@@ -9,12 +9,13 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private GameObject bulletPrefab = null;
     [SerializeField]
-    private float speed = 5f;
+    private float speed = 1f;
 
     private Vector2 targetPosition = Vector2.zero;
     private GameManager gameManager = null;
     private SpriteRenderer spriteRenderer = null;
     private bool isDamaged = false;
+
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -33,6 +34,34 @@ public class PlayerMove : MonoBehaviour
             transform.localPosition =
             Vector2.MoveTowards(transform.localPosition,
             targetPosition, speed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+                transform.Translate(Vector2.up * speed * Time.deltaTime);
+                
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(Vector2.down * speed * Time.deltaTime);
+
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
+
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
+
+        }
+        if(transform.localPosition.x > gameManager.MaxPosition.x)
+        {
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
+        }
+        if(transform.localPosition.x < gameManager.MinPosition.x)
+        {
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
     }
     private IEnumerator Fire()
