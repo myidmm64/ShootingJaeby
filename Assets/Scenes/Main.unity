@@ -349,6 +349,7 @@ MonoBehaviour:
   textHighScore: {fileID: 978569915}
   enemyCroissantPrefab: {fileID: 8559540226282812842, guid: 5975a4d42365d2b43a22f985cdad58c2, type: 3}
   life: 3
+  enemyHogdogPrefab: {fileID: 6648299866635778853, guid: 5dbe20eb42074b341a7ed51792be21cc, type: 3}
 --- !u!1 &725715841
 GameObject:
   m_ObjectHideFlags: 0

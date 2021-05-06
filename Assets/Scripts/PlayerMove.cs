@@ -82,7 +82,6 @@ public class PlayerMove : MonoBehaviour
     private IEnumerator Skill()
     {
         while (true)
-            fireRate = 0.2f;
         {
             if (timer >= 3f)
             {
