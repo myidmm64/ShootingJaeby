@@ -7,15 +7,15 @@ public class Enemymove : MonoBehaviour
     [SerializeField]
     private int hp = 2;
     [SerializeField]
-    private float speed = 20f;
+    protected float speed = 20f;
     [SerializeField]
     private long score = 10000;
 
-    private GameManager gameManager = null;
+    protected GameManager gameManager = null;
     private Animator animator = null;
     private Collider2D col = null;
-    private bool isDead = false;
-    private bool isDamaged = false;
+    protected bool isDead = false;
+    bool isDamaged = false;
     private SpriteRenderer spriteRenderer = null;
     // Start is called before the first frame update
     void Start()
@@ -27,18 +27,36 @@ public class Enemymove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
 
         if (isDead) return;
+        Move();
+        CheckLimit();
+    }
+    protected virtual void Move()
+    {
         transform.Translate(Vector2.down * speed * Time.deltaTime);
-        if (transform.localPosition.y < gameManager.MinPosition.y)
+    }
+    private void CheckLimit()
+    {
+        if (transform.localPosition.y < gameManager.MinPosition.y-5f)
         {
-            gameManager.Dead();
+            Destroy(gameObject);
+        }
+        if (transform.localPosition.y > gameManager.MaxPosition.y +10f)
+        {
+            Destroy(gameObject);
+        }
+        if (transform.localPosition.x < gameManager.MinPosition.x-5f)
+        {
+            Destroy(gameObject);
+        }
+        if (transform.localPosition.x > gameManager.MaxPosition.x + 5f)
+        {
             Destroy(gameObject);
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)   //영역 안에 들어왔을 때 실행
     {
         if (isDead) return;
@@ -65,8 +83,9 @@ public class Enemymove : MonoBehaviour
     {
         col.enabled = false;
         hp--;
-        spriteRenderer.material.SetColor("_Color",new Color(1f,1f,1f,0f));
+        spriteRenderer.material.SetColor("_Color",new Color(15f,10f,10f,100f));
         yield return new WaitForSeconds(0.1f);
+        col.enabled = true;
         spriteRenderer.material.SetColor("_Color", new Color(0f, 0f, 0f, 0f));
         isDamaged = false;
     }

@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7878828653372811269}
   - component: {fileID: 5998957198415145405}
   - component: {fileID: 7531638846770795342}
-  m_Layer: 10
+  - component: {fileID: -447486095003654971}
+  m_Layer: 7
   m_Name: Enemy_Hotdog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,3 +195,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-447486095003654971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6648299866635778853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d72bae7f3f9e5346bafa83a9a2e1912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 1
+  speed: 40
+  score: 1000000
+  bulletPrefeb: {fileID: 4874206591903569141, guid: 7bb7aab4cbf793a43ae1a21e7c1d8e17, type: 3}
+  fireRate: 0.02

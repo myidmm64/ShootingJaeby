@@ -11,20 +11,25 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private float speed = 1f;
 
+    private float timer = 0f;
+
     private Vector2 targetPosition = Vector2.zero;
     private GameManager gameManager = null;
     private SpriteRenderer spriteRenderer = null;
     private bool isDamaged = false;
-
+    private float fireRate = 0.2f;
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(Fire());
+        StartCoroutine(Skill());
     }
 
     void Update()
-    { 
+    {
+        timer += Time.deltaTime;
+        
         if (Input.GetMouseButton(0))
         {
             targetPosition =
@@ -71,7 +76,23 @@ public class PlayerMove : MonoBehaviour
         {
             bullet = Instantiate(bulletPrefab, bulletPosition);
             bullet.transform.SetParent(null);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(fireRate);
+        }
+    }
+    private IEnumerator Skill()
+    {
+        while (true)
+            fireRate = 0.2f;
+        {
+            if (timer >= 3f)
+            {
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    fireRate = 0.01f;
+                    timer = 0f;
+                }
+            }
+            yield return new WaitForSeconds(2f);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -85,7 +106,7 @@ public class PlayerMove : MonoBehaviour
     {
 
         gameManager.Dead();
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 4; i++)
         {
             spriteRenderer.enabled = false;
             yield return new WaitForSeconds(0.1f);
